@@ -1,12 +1,15 @@
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+//Adding Drop down Menu and changing state of the Menu.
+//first Map the Menu item using map function and toList function
+//change state using setSet function inside the property onChanged
+
 import 'package:flutter/material.dart';
 
 void main()
 {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title:"SateFul App",
       home:FavoriteCity(),
 
@@ -29,7 +32,8 @@ class FavoriteCity extends StatefulWidget {
 
 class _FavoriteCityState extends State<FavoriteCity>{
   String nameCity="";
-
+  var _currentCurrency="Rupee";
+var _currencies=["Rupee","Dollar","Yen","Other"];
   @override
   Widget build(BuildContext context) {
 
@@ -50,6 +54,18 @@ class _FavoriteCityState extends State<FavoriteCity>{
 
             }
           ),
+        DropdownButton<String>(
+          items:_currencies.map((String item){
+            return DropdownMenuItem<String>(
+            value:item,
+          child:Text(item),
+          );
+        }).toList(),
+          onChanged: (String valueSelected){
+            changeState(valueSelected); //separate function to change the state
+            },
+          value: _currentCurrency, // Selected Value from Drop down
+        ),
         Padding(
           padding: EdgeInsets.all(30.0),
         child:Text(
@@ -65,5 +81,11 @@ class _FavoriteCityState extends State<FavoriteCity>{
 
       }
 
+      void changeState(String value)
+      {
+        setState(() {
+          this._currentCurrency=value;
+        });
+      }
 
 }
