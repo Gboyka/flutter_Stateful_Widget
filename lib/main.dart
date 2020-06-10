@@ -1,14 +1,13 @@
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main()
 {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title:"SateFul App",
-      home:FavoriteCity(),
+      home:writeNote(),
 
     )
   );
@@ -17,18 +16,18 @@ void main()
 }
 
 
-class FavoriteCity extends StatefulWidget {
+class writeNote extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-  return _FavoriteCityState();
+  return _onChangeNote();
   }
 
 
 }
 
 
-class _FavoriteCityState extends State<FavoriteCity>{
-  String nameCity="";
+class _onChangeNote extends State<writeNote>{
+  String write="";
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _FavoriteCityState extends State<FavoriteCity>{
 
     return Scaffold(
       appBar: AppBar(
-        title:Text("Fav City")
+        title:Text("Write Note")
       ),
     body:Container(
       margin: EdgeInsets.all(20.0),
@@ -45,7 +44,7 @@ class _FavoriteCityState extends State<FavoriteCity>{
           TextField(
             onChanged: (String userInput){
               setState(() {
-                nameCity=userInput;
+                write=userInput;
               });
 
             }
@@ -53,8 +52,8 @@ class _FavoriteCityState extends State<FavoriteCity>{
         Padding(
           padding: EdgeInsets.all(30.0),
         child:Text(
-          "$nameCity",
-          style: TextStyle(fontSize: 30.0),
+          "$write",
+          style: TextStyle(fontSize: 20.0),
         )
 
         )
